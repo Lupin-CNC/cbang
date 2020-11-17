@@ -16,7 +16,7 @@ set(sources
 
 add_library(debug OBJECT "${headers}" "${sources}")
 target_include_directories(
-  debug PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
+    debug PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 target_compile_definitions(debug PRIVATE USING_CBANG)
 

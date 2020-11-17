@@ -21,7 +21,7 @@ set(sources
 )
 
 add_library(gpu OBJECT "${headers}" "${sources}")
-target_include_directories(gpu PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(gpu PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_compile_definitions(gpu PRIVATE USING_CBANG)
 set_property(TARGET gpu PROPERTY POSITION_INDEPENDENT_CODE 1)
 

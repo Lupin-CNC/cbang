@@ -22,7 +22,7 @@ set(sources
 )
 
 add_library(io OBJECT "${headers}" "${sources}")
-target_include_directories(io PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(io PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_link_libraries(io PUBLIC Boost::iostreams)
 
 if(CBANG_OPENSSL)

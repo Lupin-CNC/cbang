@@ -103,7 +103,7 @@ set(sources
 
 add_library(event OBJECT "${headers}" "${sources}")
 target_include_directories(
-  event PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
+    event PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 target_link_libraries(
   event

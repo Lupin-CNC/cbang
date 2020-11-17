@@ -13,7 +13,7 @@ set(sources
 )
 
 add_library(tar OBJECT "${headers}" "${sources}")
-target_include_directories(tar PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(tar PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_compile_definitions(tar PRIVATE USING_CBANG)
 set_property(TARGET tar PROPERTY POSITION_INDEPENDENT_CODE 1)
 

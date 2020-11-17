@@ -61,7 +61,7 @@ set(sources
 
 add_library(openssl OBJECT "${headers}" "${sources}")
 target_include_directories(
-  openssl PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
+    openssl PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 target_link_libraries(
   openssl PUBLIC Boost::iostreams OpenSSL::Crypto OpenSSL::SSL

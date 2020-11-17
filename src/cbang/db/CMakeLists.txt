@@ -1,4 +1,4 @@
-add_subdirectory(maria)
+# add_subdirectory(maria)
 
 set(headers
     AsyncLevelDB.h
@@ -7,7 +7,6 @@ set(headers
     Column.h
     ColumnDef.h
     Database.h
-    LevelDB.h
     NameValueTable.h
     Parameter.h
     Schema.h
@@ -22,7 +21,6 @@ set(sources
     Blob.cpp
     Column.cpp
     Database.cpp
-    LevelDB.cpp
     NameValueTable.cpp
     Parameter.cpp
     Schema.cpp
@@ -30,10 +28,14 @@ set(sources
     TableDef.cpp
     Transaction.cpp
 )
+if(CBANG_LEVELDB)
+    list(APPEND headers LevelDB.h)
+    list(APPEND sources LevelDB.cpp)
+endif()
 
 add_library(db OBJECT "${headers}" "${sources}")
 target_include_directories(
-  db PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
+    db PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 
 target_link_libraries(db PUBLIC unofficial::sqlite3::sqlite3)

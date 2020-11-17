@@ -9,7 +9,7 @@ set(headers
 set(sources Scanner.cpp)
 
 add_library(parse OBJECT "${headers}" "${sources}")
-target_include_directories(parse PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(parse PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_compile_definitions(parse PRIVATE USING_CBANG)
 set_property(TARGET parse PROPERTY POSITION_INDEPENDENT_CODE 1)
 

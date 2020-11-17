@@ -71,7 +71,7 @@ set(sources
 
 add_library(http OBJECT "${headers}" "${sources}")
 target_include_directories(
-  http PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
+    http PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 target_link_libraries(http PUBLIC Boost::iostreams)
 

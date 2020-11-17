@@ -3,7 +3,7 @@ set(headers PCIDevice.h PCIInfo.h PCIVendor.h)
 set(sources PCIDevice.cpp PCIInfo.cpp PCIVendor.cpp)
 
 add_library(pci OBJECT "${headers}" "${sources}")
-target_include_directories(pci PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(pci PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_compile_definitions(pci PRIVATE USING_CBANG)
 set_property(TARGET pci PROPERTY POSITION_INDEPENDENT_CODE 1)
 

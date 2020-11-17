@@ -13,7 +13,7 @@ set(sources
 )
 
 add_library(auth OBJECT "${headers}" "${sources}")
-target_include_directories(auth PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(auth PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_compile_definitions(auth PRIVATE USING_CBANG)
 set_property(TARGET auth PROPERTY POSITION_INDEPENDENT_CODE 1)
 

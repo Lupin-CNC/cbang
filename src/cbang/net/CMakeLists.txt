@@ -23,7 +23,7 @@ set(sources
 
 add_library(net OBJECT "${headers}" "${sources}")
 target_include_directories(
-  net PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
+    net PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 if(CBANG_OPENSSL)
   target_link_libraries(net PUBLIC OpenSSL::Crypto OpenSSL::SSL)

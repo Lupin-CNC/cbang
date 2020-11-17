@@ -60,7 +60,7 @@ set(sources
 
 add_library(util OBJECT "${headers}" "${sources}")
 target_include_directories(
-  util PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
+    util PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 target_link_libraries(util PUBLIC Boost::regex BZip2::BZip2)
 

@@ -4,7 +4,7 @@ set(sources DB.cpp EventDB.cpp Field.cpp)
 
 add_library(maria OBJECT "${headers}" "${sources}")
 target_include_directories(
-  maria PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
+    maria PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 target_link_libraries(maria PUBLIC libmysql)
 target_compile_definitions(maria PRIVATE USING_CBANG)

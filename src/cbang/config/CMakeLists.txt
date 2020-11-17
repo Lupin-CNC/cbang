@@ -26,7 +26,7 @@ set(sources
 )
 
 add_library(config OBJECT "${headers}" "${sources}")
-target_include_directories(config PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(config PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_compile_definitions(config PRIVATE USING_CBANG)
 set_property(TARGET config PROPERTY POSITION_INDEPENDENT_CODE 1)
 

@@ -56,7 +56,7 @@ set(sources
 
 add_library(os OBJECT "${headers}" "${sources}")
 target_include_directories(
-  os PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
+    os PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 target_link_libraries(
   os PUBLIC Boost::filesystem Boost::iostreams Boost::date_time

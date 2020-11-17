@@ -29,7 +29,7 @@ set(sources
 
 add_library(socket OBJECT "${headers}" "${sources}")
 target_include_directories(
-  socket PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
+    socket PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 target_link_libraries(socket PUBLIC Boost::iostreams)
 

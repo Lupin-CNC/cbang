@@ -31,7 +31,7 @@ set(sources
 )
 
 add_library(script OBJECT "${headers}" "${sources}")
-target_include_directories(script PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(script PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_link_libraries(script PUBLIC Boost::iostreams)
 target_compile_definitions(script PRIVATE USING_CBANG)
 set_property(TARGET script PROPERTY POSITION_INDEPENDENT_CODE 1)

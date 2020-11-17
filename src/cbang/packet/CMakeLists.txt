@@ -9,7 +9,7 @@ set(headers
 set(sources Packet.cpp StringPacketField.cpp)
 
 add_library(packet OBJECT "${headers}" "${sources}")
-target_include_directories(packet PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(packet PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_compile_definitions(packet PRIVATE USING_CBANG)
 set_property(TARGET packet PROPERTY POSITION_INDEPENDENT_CODE 1)
 

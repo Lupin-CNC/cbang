@@ -27,10 +27,11 @@ set(sources
     XMLValueMap.cpp
     XMLWriter.cpp
 )
+include_directories("${Cbang_SOURCE_DIR}/src")
 
 add_library(xml OBJECT "${headers}" "${sources}")
 target_include_directories(
-  xml PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
+    xml PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 target_compile_definitions(xml PRIVATE USING_CBANG)
 set_property(TARGET xml PROPERTY POSITION_INDEPENDENT_CODE 1)

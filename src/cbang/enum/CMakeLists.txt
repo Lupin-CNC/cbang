@@ -20,7 +20,7 @@ set(sources
 )
 
 add_library(enum OBJECT "${headers}" "${sources}")
-target_include_directories(enum PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(enum PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_compile_definitions(enum PRIVATE USING_CBANG)
 set_property(TARGET enum PROPERTY POSITION_INDEPENDENT_CODE 1)
 

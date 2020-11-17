@@ -70,7 +70,6 @@ set(sources
     $<TARGET_OBJECTS:buffer>
     $<TARGET_OBJECTS:config>
     $<TARGET_OBJECTS:db>
-    $<TARGET_OBJECTS:maria>
     $<TARGET_OBJECTS:debug>
     $<TARGET_OBJECTS:enum>
     $<TARGET_OBJECTS:event>
@@ -92,6 +91,9 @@ set(sources
     $<TARGET_OBJECTS:util>
     $<TARGET_OBJECTS:xml>
 )
+if (CBANG_MARIADB)
+    list(APPEND sources $<TARGET_OBJECTS:maria>)
+endif()
 
 if(CBANG_CHAKRA OR CBANG_V8)
   add_subdirectory(js)
@@ -133,15 +135,24 @@ endif()
 
 configure_file("config.h.in" "${CMAKE_CURRENT_BINARY_DIR}/config.h" @ONLY)
 
-add_library(cbang "${headers}" "${sources}")
-add_library(Cbang::libcbang ALIAS cbang)
+if(CBANG_BUILD_STATIC)
+    add_library(Cbang STATIC "${headers}" "${sources}")
+else()
+    add_library(Cbang SHARED "${headers}" "${sources}")
+endif()
+add_library(Cbang::libCbang ALIAS Cbang)
+
+
+
 target_include_directories(
-  cbang
-  PRIVATE "${cbang_SOURCE_DIR}/src" "${cbang_BINARY_DIR}/src"
-  INTERFACE $<BUILD_INTERFACE:${cbang_SOURCE_DIR}/src>
+    Cbang
+    PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
+    INTERFACE $<BUILD_INTERFACE:${Cbang_SOURCE_DIR}/src>
 )
+
+
 target_link_libraries(
-  cbang
+    Cbang
   INTERFACE
     acmev2
     auth
@@ -169,19 +180,19 @@ target_link_libraries(
     util
     xml
 )
-target_compile_definitions(cbang PRIVATE USING_CBANG)
-set_property(TARGET cbang PROPERTY POSITION_INDEPENDENT_CODE 1)
+target_compile_definitions(Cbang PRIVATE USING_CBANG)
+set_property(TARGET Cbang PROPERTY POSITION_INDEPENDENT_CODE 1)
 
 if(CMAKE_DL_LIBS)
-  target_link_libraries(cbang PRIVATE ${CMAKE_DL_LIBS})
+    target_link_libraries(Cbang PRIVATE ${CMAKE_DL_LIBS})
 endif()
 
 if(LIB_RT)
-  target_link_libraries(cbang PRIVATE ${LIB_RT})
+    target_link_libraries(Cbang PRIVATE ${LIB_RT})
 endif()
 
 if(CBANG_OPENSSL)
-  target_link_libraries(cbang INTERFACE openssl)
+    target_link_libraries(Cbang INTERFACE openssl)
 endif()
 
 if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
@@ -191,22 +202,58 @@ if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
     set(DEF_INSTALL_CMAKE_DIR ${CMAKE_INSTALL_LIBDIR}/cmake/Cbang)
   endif()
 
-  set(INSTALL_CMAKE_DIR
-      ${DEF_INSTALL_CMAKE_DIR}
-      CACHE PATH "Installation directory for CMake files"
+  set_target_properties(Cbang PROPERTIES
+    FRAMEWORK           FALSE
+    VERSION             ${CBANG_VERSION}
+    SOVERSION           ${CBANG_SOVERSION}
+    PUBLIC_HEADER       ${headers}
+    DEFINE_SYMBOL       MAKE_CBANG_LIB
   )
 
-  install(
-    FILES ${headers} "${CMAKE_CURRENT_BINARY_DIR}/config.h"
+  install(TARGETS Cbang
+    EXPORT          Cbang-targets
+    RUNTIME         DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY         DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE         DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    INCLUDES        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang
+    PUBLIC_HEADER   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang
+  )
+
+  install(EXPORT Cbang-targets
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Cbang
+  )
+
+  configure_package_config_file(
+    ${Cbang_SOURCE_DIR}/cmake/CbangConfig.cmake.in ${CMAKE_BINARY_DIR}/CbangConfig.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Cbang
+    PATH_VARS CMAKE_INSTALL_INCLUDEDIR
+  )
+  write_basic_package_version_file(${CMAKE_BINARY_DIR}/CbangConfigVersion.cmake
+    VERSION ${CBANG_VERSION}
+    COMPATIBILITY SameMajorVersion
+  )
+  install(FILES
+    ${CMAKE_BINARY_DIR}/CbangConfig.cmake
+    ${CMAKE_BINARY_DIR}/CbangConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Cbang
+  )
+
+#  set(INSTALL_CMAKE_DIR
+#      ${DEF_INSTALL_CMAKE_DIR}
+#      CACHE PATH "Installation directory for CMake files"
+#  )
+#
+  install(FILES 
+    ${headers} "${CMAKE_CURRENT_BINARY_DIR}/config.h"
     DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/cbang"
   )
-
-  configure_file(
-    "${PROJECT_SOURCE_DIR}/cmake/CbangConfig.cmake.in"
-    "${PROJECT_BINARY_DIR}/${CMAKE_FILES_DIRECTORY}/CbangConfig.cmake" @ONLY
-  )
-  install(
-    FILES "${PROJECT_BINARY_DIR}/${CMAKE_FILES_DIRECTORY}/CbangConfig.cmake"
-    DESTINATION "${INSTALL_CMAKE_DIR}"
-  )
+#
+#  configure_file(
+#    "${PROJECT_SOURCE_DIR}/cmake/CbangConfig.cmake.in"
+#    "${PROJECT_BINARY_DIR}/${CMAKE_FILES_DIRECTORY}/CbangConfig.cmake" @ONLY
+#  )
+#  install(
+#    FILES "${PROJECT_BINARY_DIR}/${CMAKE_FILES_DIRECTORY}/CbangConfig.cmake"
+#    DESTINATION "${INSTALL_CMAKE_DIR}"
+#  )
 endif()
