@@ -15,7 +15,7 @@ set(sources
 )
 
 add_library(chakra OBJECT "${headers}" "${sources}")
-target_include_directories(chakra PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(chakra PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_compile_definitions(chakra PRIVATE USING_CBANG)
 set_property(TARGET chakra PROPERTY POSITION_INDEPENDENT_CODE 1)
 

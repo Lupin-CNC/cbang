@@ -41,7 +41,7 @@ set(sources
 )
 
 add_library(js OBJECT "${headers}" "${sources}")
-target_include_directories(js PRIVATE "${cbang_SOURCE_DIR}/src")
+target_include_directories(js PRIVATE "${Cbang_SOURCE_DIR}/src")
 target_compile_definitions(js PRIVATE USING_CBANG)
 set_property(TARGET js PROPERTY POSITION_INDEPENDENT_CODE 1)
 
