@@ -10,7 +10,7 @@
 # These are IMPORTED targets created by CBangTargets.cmake
 # set(CBANG_LIBRARIES cbang)
 @PACKAGE_INIT@
-
+set(CBANG_LIBRARIES Cbang)
 # Capturing values from configure (optional)
 set_and_check(Cbang_INCLUDE_DIR "@PACKAGE_CMAKE_INSTALL_INCLUDEDIR@")
 

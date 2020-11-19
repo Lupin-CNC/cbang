@@ -7,6 +7,8 @@ set(headers
     EnumerationManager.h
     ProcessPriority.h
     ThreadsType.h
+    MakeEnumeration.def
+    MakeEnumerationImpl.def
 )
 
 set(sources
