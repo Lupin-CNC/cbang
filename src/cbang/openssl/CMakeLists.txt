@@ -63,9 +63,9 @@ add_library(openssl OBJECT "${headers}" "${sources}")
 target_include_directories(
     openssl PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
-target_link_libraries(
-  openssl PUBLIC Boost::iostreams OpenSSL::Crypto OpenSSL::SSL
-)
+# target_link_libraries(openssl PUBLIC Boost::iostreams OpenSSL::Crypto OpenSSL::SSL )
+target_link_libraries(openssl PUBLIC ${Boost_IOSTREAMS_LIBRARY} ${OPENSSL_CRYPTO_LIBRARY} ${OPENSSL_SSL_LIBRARY})
+
 target_compile_definitions(openssl PRIVATE USING_CBANG)
 
 if(CBANG_VALGRIND)

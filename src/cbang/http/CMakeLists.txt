@@ -73,14 +73,17 @@ add_library(http OBJECT "${headers}" "${sources}")
 target_include_directories(
     http PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
-target_link_libraries(http PUBLIC Boost::iostreams)
+# target_link_libraries(http PUBLIC Boost::iostreams)
+target_link_libraries(http PUBLIC ${Boost_IOSTREAMS_LIBRARY})
 
 if(CBANG_LEVELDB)
-  target_link_libraries(http PUBLIC leveldb::leveldb)
+    target_link_libraries(http PUBLIC leveldb::leveldb)
+
 endif()
 
 if(CBANG_OPENSSL)
-  target_link_libraries(http PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    # target_link_libraries(http PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    target_link_libraries(http PUBLIC ${OPENSSL_CRYPTO_LIBRARY} ${OPENSSL_SSL_LIBRARY})
 endif()
 
 target_compile_definitions(http PRIVATE USING_CBANG)

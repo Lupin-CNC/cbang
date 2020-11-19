@@ -59,13 +59,13 @@ set(sources
 )
 
 add_library(util OBJECT "${headers}" "${sources}")
-target_include_directories(
-    util PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
-)
-target_link_libraries(util PUBLIC Boost::regex BZip2::BZip2)
+target_include_directories( util PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src")
+# target_link_libraries(util PRIVATE Boost::regex BZip2::BZip2)
+target_link_libraries(util PUBLIC ${Boost_REGEX_LIBRARY} ${BZIP2_LIBRARIES})
 
 if(CBANG_OPENSSL)
-  target_link_libraries(util PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    # target_link_libraries(util PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    target_link_libraries(util PUBLIC ${OPENSSL_CRYPTO_LIBRARY} ${OPENSSL_SSL_LIBRARY})
 endif()
 
 target_compile_definitions(util PRIVATE USING_CBANG)

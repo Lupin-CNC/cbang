@@ -106,9 +106,11 @@ target_include_directories(
     event PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 # target_link_libraries( event PUBLIC Boost::iostreams expat::expat libevent::core re2::re2 )
+target_link_libraries( event PUBLIC ${Boost_IOSTREAMS_LIBRARY} ${EXPAT_LIBRARY} )
 
 if(CBANG_OPENSSL)
-#  target_link_libraries(event PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    # target_link_libraries(event PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    target_link_libraries(event PUBLIC ${OPENSSL_CRYPTO_LIBRARY} ${OPENSSL_SSL_LIBRARY} )
 endif()
 
 target_compile_definitions(event PRIVATE USING_CBANG)

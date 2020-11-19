@@ -140,9 +140,8 @@ if(CBANG_BUILD_STATIC)
 else()
     add_library(Cbang SHARED "${headers}" "${sources}")
 endif()
-
+target_link_options(Cbang PUBLIC "-pthread")
 # add_library(Cbang::libcbang ALIAS Cbang)
-
 
 
 target_include_directories(
@@ -150,8 +149,6 @@ target_include_directories(
     PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
     INTERFACE $<BUILD_INTERFACE:${Cbang_SOURCE_DIR}/src>
 )
-
-
 target_link_libraries(
     Cbang
   INTERFACE

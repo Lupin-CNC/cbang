@@ -31,10 +31,12 @@ add_library(socket OBJECT "${headers}" "${sources}")
 target_include_directories(
     socket PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
-target_link_libraries(socket PUBLIC Boost::iostreams)
+# target_link_libraries(socket PUBLIC Boost::iostreams)
+target_link_libraries(socket PUBLIC ${Boost_IOSTREAMS_LIBRARY})
 
 if(CBANG_OPENSSL)
-  target_link_libraries(socket PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    # target_link_libraries(socket PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    target_link_libraries(socket PUBLIC ${OPENSSL_CRYPTO_LIBRARY} ${OPENSSL_SSL_LIBRARY})
 endif()
 
 target_compile_definitions(socket PRIVATE USING_CBANG)

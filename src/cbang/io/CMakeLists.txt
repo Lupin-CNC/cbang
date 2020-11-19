@@ -23,10 +23,12 @@ set(sources
 
 add_library(io OBJECT "${headers}" "${sources}")
 target_include_directories(io PRIVATE "${Cbang_SOURCE_DIR}/src")
-target_link_libraries(io PUBLIC Boost::iostreams)
+# target_link_libraries(io PUBLIC Boost::iostreams)
+target_link_libraries(io PUBLIC ${Boost_IOSTREAMS_LIBRARY})
 
 if(CBANG_OPENSSL)
-  target_link_libraries(io PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    # target_link_libraries(io PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    target_link_libraries(io PUBLIC ${OPENSSL_CRYPTO_LIBRARY} ${OPENSSL_SSL_LIBRARY})
 endif()
 
 target_compile_definitions(io PRIVATE USING_CBANG)

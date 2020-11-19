@@ -23,34 +23,27 @@ if(CBANG_CHAKRA AND CBANG_V8)
   message(FATAL_ERROR "Only one javascript backend can be enabled")
 endif()
 
-find_package(
-  Boost
-  REQUIRED
-  date_time
-  filesystem
-  iostreams
-  regex
+find_package(Boost REQUIRED
+    date_time
+    filesystem
+    iostreams
+    regex
 )
 find_package(BZip2 REQUIRED)
-# find_package(expat CONFIG REQUIRED)
+find_package(EXPAT REQUIRED)
 # find_package(Libevent CONFIG REQUIRED)
 if(CBANG_MARIADB)
     find_package(Libmysql REQUIRED)
 endif()
-# find_package(lz4 CONFIG REQUIRED)
-
+find_package(LZ4 REQUIRED)
 if(CBANG_LEVELDB)
     find_package(leveldb REQUIRED)
 endif()
-
 if(CBANG_OPENSSL)
   find_package(OpenSSL REQUIRED)
 endif()
-
 # find_package(re2 CONFIG REQUIRED)
-# find_package(unofficial-sqlite3 CONFIG REQUIRED)
+find_package(SQLite3 REQUIRED)
 # find_package(yaml CONFIG REQUIRED)
 
 add_subdirectory(src)
-
-

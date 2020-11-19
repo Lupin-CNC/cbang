@@ -34,15 +34,14 @@ if(CBANG_LEVELDB)
 endif()
 
 add_library(db OBJECT "${headers}" "${sources}")
-target_include_directories(
-    db PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
-)
-
+target_include_directories(db PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src" )
 # target_link_libraries(db PUBLIC unofficial::sqlite3::sqlite3)
+target_link_libraries(db PUBLIC ${SQLite3_LIBRARY})
 
 if(CBANG_LEVELDB)
     target_include_directories(db PRIVATE "${leveldb_INCLUDE_DIR}")
-#   target_link_libraries(db PUBLIC leveldb::leveldb)
+    # target_link_libraries(db PUBLIC leveldb::leveldb)
+    target_link_libraries(db PUBLIC ${leveldb_LIBRARY})
 endif()
 
 target_compile_definitions(db PRIVATE USING_CBANG)

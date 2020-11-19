@@ -26,7 +26,8 @@ target_include_directories(
     net PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 if(CBANG_OPENSSL)
-  target_link_libraries(net PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    # target_link_libraries(net PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+    target_link_libraries(net PUBLIC ${OPENSSL_CRYPTO_LIBRARY} ${OPENSSL_SSL_LIBRARY})
 endif()
 
 target_compile_definitions(net PRIVATE USING_CBANG)

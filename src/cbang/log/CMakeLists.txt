@@ -19,7 +19,8 @@ add_library(log OBJECT "${headers}" "${sources}")
 target_include_directories(
     log PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
-target_link_libraries(log PUBLIC Boost::iostreams)
+# target_link_libraries(log PUBLIC Boost::iostreams)
+target_link_libraries(log PUBLIC ${Boost_IOSTREAMS_LIBRARY})
 target_compile_definitions(log PRIVATE USING_CBANG)
 set_property(TARGET log PROPERTY POSITION_INDEPENDENT_CODE 1)
 

@@ -57,14 +57,11 @@ set(sources
 
 add_library(json OBJECT "${headers}" "${sources}")
 target_include_directories(json PRIVATE "${Cbang_SOURCE_DIR}/src")
-target_link_libraries(json PUBLIC yaml)
+# target_link_libraries(json PUBLIC yaml)
 target_compile_definitions(json PRIVATE USING_CBANG)
 set_property(TARGET json PROPERTY POSITION_INDEPENDENT_CODE 1)
 
 if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
-  install(
-    FILES ${headers} ValueTypes.def
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/json
-  )
+  install( FILES ${headers} ValueTypes.def DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/json )
   install(TARGETS json EXPORT Cbang-targets)
 endif()

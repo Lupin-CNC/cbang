@@ -55,12 +55,9 @@ set(sources
 )
 
 add_library(os OBJECT "${headers}" "${sources}")
-target_include_directories(
-    os PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
-)
-target_link_libraries(
-  os PUBLIC Boost::filesystem Boost::iostreams Boost::date_time
-)
+target_include_directories( os PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src" )
+# target_link_libraries( os PUBLIC Boost::filesystem Boost::iostreams Boost::date_time )
+target_link_libraries( os PUBLIC ${Boost_FILESYSTEM_LIBRARY} ${Boost_IOSTREAMS_LIBRARY} ${Boost_DATE_TIME_LIBRARY} )
 target_compile_definitions(os PRIVATE USING_CBANG)
 
 if(CBANG_VALGRIND)
@@ -70,9 +67,7 @@ endif()
 set_property(TARGET os PROPERTY POSITION_INDEPENDENT_CODE 1)
 
 if(APPLE)
-  target_link_libraries(
-    os PUBLIC "-framework CoreFoundation" "-framework IOKit"
-  )
+  target_link_libraries(os PUBLIC "-framework CoreFoundation" "-framework IOKit")
   set_target_properties(os PROPERTIES LINK_FLAGS "-Wl,-F/Library/Frameworks")
 endif()
 

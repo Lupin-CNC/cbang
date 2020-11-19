@@ -8,9 +8,7 @@ target_compile_definitions(pci PRIVATE USING_CBANG)
 set_property(TARGET pci PROPERTY POSITION_INDEPENDENT_CODE 1)
 
 if(APPLE)
-  target_link_libraries(
-    os PUBLIC "-framework CoreFoundation" "-framework IOKit"
-  )
+  target_link_libraries( os PUBLIC "-framework CoreFoundation" "-framework IOKit" )
   set_target_properties(os PROPERTIES LINK_FLAGS "-Wl,-F/Library/Frameworks")
 endif()
 
