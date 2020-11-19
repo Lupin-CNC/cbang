@@ -105,17 +105,10 @@ add_library(event OBJECT "${headers}" "${sources}")
 target_include_directories(
     event PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
-target_link_libraries(
-  event
-  PUBLIC
-    Boost::iostreams
-    expat::expat
-    libevent::core
-    re2::re2
-)
+# target_link_libraries( event PUBLIC Boost::iostreams expat::expat libevent::core re2::re2 )
 
 if(CBANG_OPENSSL)
-  target_link_libraries(event PUBLIC OpenSSL::Crypto OpenSSL::SSL)
+#  target_link_libraries(event PUBLIC OpenSSL::Crypto OpenSSL::SSL)
 endif()
 
 target_compile_definitions(event PRIVATE USING_CBANG)
@@ -128,4 +121,5 @@ set_property(TARGET event PROPERTY POSITION_INDEPENDENT_CODE 1)
 
 if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
   install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/event)
+  install(TARGETS event EXPORT Cbang-targets)
 endif()

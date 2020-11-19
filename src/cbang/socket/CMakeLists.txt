@@ -42,4 +42,5 @@ set_property(TARGET socket PROPERTY POSITION_INDEPENDENT_CODE 1)
 
 if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
   install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/socket)
+  install(TARGETS socket EXPORT Cbang-targets)
 endif()

@@ -10,6 +10,8 @@ set(headers
     MakeEnumeration.def
     MakeEnumerationImpl.def
 )
+set_source_files_properties(MakeEnumeration.def PROPERTIES HEADER_FILE_ONLY TRUE)
+set_source_files_properties(MakeEnumerationImpl.def PROPERTIES HEADER_FILE_ONLY TRUE)
 
 set(sources
     CPUExtendedFeature.cpp

@@ -16,4 +16,5 @@ endif()
 
 if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
   install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/pci)
+  install(TARGETS pci EXPORT Cbang-targets)
 endif()

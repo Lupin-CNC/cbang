@@ -38,11 +38,11 @@ target_include_directories(
     db PRIVATE "${Cbang_SOURCE_DIR}/src" "${Cbang_BINARY_DIR}/src"
 )
 
-target_link_libraries(db PUBLIC unofficial::sqlite3::sqlite3)
+# target_link_libraries(db PUBLIC unofficial::sqlite3::sqlite3)
 
 if(CBANG_LEVELDB)
-  target_include_directories(db PRIVATE "${leveldb_INCLUDE_DIR}")
-  target_link_libraries(db PUBLIC leveldb::leveldb)
+    target_include_directories(db PRIVATE "${leveldb_INCLUDE_DIR}")
+#   target_link_libraries(db PUBLIC leveldb::leveldb)
 endif()
 
 target_compile_definitions(db PRIVATE USING_CBANG)
@@ -53,4 +53,5 @@ if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
     FILES ${headers} MakeTable.def
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/db
   )
+  install(TARGETS db EXPORT Cbang-targets)
 endif()

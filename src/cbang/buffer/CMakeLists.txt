@@ -10,4 +10,5 @@ set_property(TARGET buffer PROPERTY POSITION_INDEPENDENT_CODE 1)
 
 if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
   install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/buffer)
+  install(TARGETS buffer EXPORT Cbang-targets)
 endif()

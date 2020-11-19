@@ -78,4 +78,5 @@ endif()
 
 if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
   install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/os)
+  install(TARGETS os EXPORT Cbang-targets)
 endif()

@@ -27,4 +27,5 @@ set_property(TARGET gpu PROPERTY POSITION_INDEPENDENT_CODE 1)
 
 if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
   install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/gpu)
+  install(TARGETS gpu EXPORT Cbang-targets)
 endif()

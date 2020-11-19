@@ -140,7 +140,8 @@ if(CBANG_BUILD_STATIC)
 else()
     add_library(Cbang SHARED "${headers}" "${sources}")
 endif()
-add_library(Cbang::libcbang ALIAS Cbang)
+
+# add_library(Cbang::libcbang ALIAS Cbang)
 
 
 

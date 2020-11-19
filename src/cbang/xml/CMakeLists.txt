@@ -38,4 +38,5 @@ set_property(TARGET xml PROPERTY POSITION_INDEPENDENT_CODE 1)
 
 if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
   install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/xml)
+  install(TARGETS xml EXPORT Cbang-targets)
 endif()

@@ -21,4 +21,5 @@ set_property(TARGET time PROPERTY POSITION_INDEPENDENT_CODE 1)
 
 if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
   install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/time)
+  install(TARGETS time EXPORT Cbang-targets)
 endif()

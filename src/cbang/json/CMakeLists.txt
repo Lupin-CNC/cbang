@@ -66,4 +66,5 @@ if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
     FILES ${headers} ValueTypes.def
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/json
   )
+  install(TARGETS json EXPORT Cbang-targets)
 endif()

@@ -93,4 +93,5 @@ set_property(TARGET http PROPERTY POSITION_INDEPENDENT_CODE 1)
 
 if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
   install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cbang/http)
+  install(TARGETS http EXPORT Cbang-targets)
 endif()
