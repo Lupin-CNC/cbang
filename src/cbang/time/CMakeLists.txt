@@ -16,7 +16,7 @@ set(sources
 add_library(time OBJECT "${headers}" "${sources}")
 target_include_directories(time PRIVATE "${Cbang_SOURCE_DIR}/src")
 # target_link_libraries(time PUBLIC Boost::date_time)
-target_link_libraries(time PUBLIC ${Boost_DAY_TIME_LIBRARY})
+target_link_libraries(time PUBLIC ${Boost_DATE_TIME_LIBRARY})
 target_compile_definitions(time PRIVATE USING_CBANG)
 set_property(TARGET time PROPERTY POSITION_INDEPENDENT_CODE 1)
 
