@@ -15,7 +15,7 @@ option(CBANG_CHAKRA "Enable chakra-js support" OFF)
 option(CBANG_LEVELDB "Enable LevelDB support" OFF)
 option(CBANG_MARIADB "Enable MariaDB support" OFF)
 option(CBANG_OPENSSL "Enable OpenSSL support" ON)
-option(CBANG_V8 "Enable v8-js support" ON)
+option(CBANG_V8 "Enable v8-js support" OFF)
 option(CBANG_VALGRIND "Enable valgrind support" OFF)
 option(CBANG_BUILD_STATIC "Build as a static library" ON)
 
