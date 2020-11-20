@@ -42,3 +42,7 @@ build_info.cpp
 .ninja_deps
 .ninja_log
 build.ninja
+
+# KDevelop
+.kdev4
+cbang.kdev4

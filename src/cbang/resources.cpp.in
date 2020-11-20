@@ -1,0 +1,10 @@
+#include <cbang/util/Resource.h>
+
+using namespace cb;
+
+namespace cb {
+const Resource *children1[] = {0};
+extern const DirectoryResource resource1("licenses", children1);
+const Resource *children0[] = {&resource1,0};
+extern const DirectoryResource resource0("resources", children0);
+} // namespace cb
