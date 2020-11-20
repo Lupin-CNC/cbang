@@ -134,6 +134,10 @@ if(CBANG_V8)
 endif()
 
 configure_file("config.h.in" "${CMAKE_CURRENT_BINARY_DIR}/config.h" @ONLY)
+configure_file("build_info.cpp.in" "${CMAKE_CURRENT_BINARY_DIR}/build_info.cpp" @ONLY)
+list(APPEND sources ${CMAKE_CURRENT_BINARY_DIR}/build_info.cpp)
+configure_file("resources.cpp.in" "${CMAKE_CURRENT_BINARY_DIR}/resources.cpp" @ONLY)
+list(APPEND sources ${CMAKE_CURRENT_BINARY_DIR}/resources.cpp)
 
 if(CBANG_BUILD_STATIC)
     add_library(Cbang STATIC "${headers}" "${sources}")

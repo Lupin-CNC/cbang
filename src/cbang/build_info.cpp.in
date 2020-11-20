@@ -1,0 +1,29 @@
+#include <cbang/Info.h>
+#include <cbang/String.h>
+#include <cbang/util/CompilerInfo.h>
+
+using namespace cb;
+
+namespace cb {
+namespace BuildInfo {
+void addBuildInfo(const char *category) {
+    Info &info = Info::instance();
+
+    info.add(category, "Version",   "");
+    info.add(category, "Author",    "");
+    info.add(category, "Org",       "");
+    info.add(category, "Copyright", "");
+    info.add(category, "Homepage",  "");
+    info.add(category, "License",   "");
+    info.add(category, "Date",      __DATE__);
+    info.add(category, "Time",      __TIME__);
+    info.add(category, "Revision", "43b7575487288d96ae1ba996c1cc533778eac302");
+    info.add(category, "Branch",   "cmake");
+    info.add(category, "Compiler", COMPILER);
+    info.add(category, "Options",  "-faligned-new -std=c++11 -fsigned-char -ffunction-sections -fdata-sections -O3 -funroll-loops -fno-pie -fPIC");
+    info.add(category, "Platform", "linux 4.13.1-gentoo");
+    info.add(category, "Bits",     String(COMPILER_BITS));
+    info.add(category, "Mode",     "Release");
+  }
+} // namespace BuildInfo
+} // namespace cb
