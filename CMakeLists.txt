@@ -19,6 +19,8 @@ option(CBANG_V8 "Enable v8-js support" OFF)
 option(CBANG_VALGRIND "Enable valgrind support" OFF)
 option(CBANG_BUILD_STATIC "Build as a static library" ON)
 
+set(CMAKE_CXX_FLAGS "-std=c++11")
+
 if(CBANG_CHAKRA AND CBANG_V8)
   message(FATAL_ERROR "Only one javascript backend can be enabled")
 endif()
